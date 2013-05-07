@@ -3,13 +3,13 @@ wikidata-entity-suggester
 
 This is a prototype for the Entity Suggester's first and second objectives - suggesting properties and values for a new item in wikidata.
 
-This initial prototype uses php and [bcc/myrrix](https://github.com/michelsalib/bcc-myrrix). I might have to switch to the Myrrix Java Client and call it from PHP or something. It basically works as follows:
+This initial prototype uses Myrrix' Java API . It basically works as follows:
 
 1. The initial model is generated in Myrrix by reading a csv file that contains item-property pairs and item-(property:value) pairs.
 
-2. An anonymous (new/fresh item) item with maybe 1 or two properties (and possibly < property:value >s too) is generated and Myrrix is asked to provide suggestions for properties for the given item.
+2. An anonymous (new/fresh item) item with maybe 1 or two properties (and possibly < property:value >s too) is generated and Myrrix is asked to provide suggestions for properties and values for the given item.
 
-This can be easily extended to provide recommendations for property:value (that is, suggest values) too.
+I'm expecting pretty good results on properties, not sure about values.
 
 TODO:
 
