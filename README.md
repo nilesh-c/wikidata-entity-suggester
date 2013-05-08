@@ -3,7 +3,7 @@ wikidata-entity-suggester
 
 This is a prototype for the Entity Suggester's first and second objectives - suggesting properties and values for a new item in wikidata. I'll be working on adding this entity suggester to Wikidata and improve the sorting order of the entity selector, for GSoC 2013.
 
-Please don't try running this with a Myrrix instance. I will push SQL scripts to generate the csv file from the DB, in a day. Then I shall test this on my desktop. The myrrix [ParameterOptimizer](http://myrrix.com/tuning-quality/) is still running on my Intel i5-2500K, 4g RAM desktop for over 15 hours. After it finishes I shall build the model with an optimal value of lambda and no. of features; I'll be able to properly test this code on it and report my findings.
+Please don't try running this with a Myrrix instance as yet. I will push SQL scripts to generate the csv file from the DB, in a day. Then I shall test this on my desktop. The myrrix [ParameterOptimizer](http://myrrix.com/tuning-quality/) is still running on my Intel i5-2500K, 4g RAM desktop for over 15 hours. After it finishes I shall build the model with an optimal value of lambda and no. of features; I'll be able to properly test this code on it and report my findings.
 
 It's an initial prototype completely in Java, using [Myrrix](http://myrrix.com)' Java API. The current code is pretty quick-n-dirty, a bunch of static java methods working together. I'll write a PHP over this, or maybe make a REST-based servlet API to call from PHP.
 
