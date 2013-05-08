@@ -59,6 +59,8 @@ lib/commons-cli-1.2.jar
 
 5. Make this README more friendly. The reader should be able to set everything up and test after one read.
 
+6. I may re-write read_items.c (please see below) using an xml library and map-reduce to speed it up later. Might not be necessary at the moment, considering it takes 45 mins to parse the xml file and push into MySQL on my machine.
+
 ------------------------------------------------------------------------------------------------
 
 ## How to build the required CSV files from wikidata data dumps ##
