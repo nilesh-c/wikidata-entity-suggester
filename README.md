@@ -44,11 +44,20 @@ I'm expecting pretty good results on properties, not sure about values - need to
 
 1. Push SQL scripts to this repo.
 
-2. Provide suggestions for absolutely new items (having one or two properties and values if any, freshly entered by the user) - this is the real thing, and quite easy to implement too.
+2. Add lib directory to this repo for convinience. It presently contains primarily the following:
+<pre>
+lib/myrrix-serving-0.11.jar
+lib/myrrix-client-0.11.jar
+lib/myrrix-online-0.11.jar
+lib/myrrix-common-0.11.jar
+lib/commons-cli-1.2.jar
+</pre>
 
-3. Make the code cleaner and expose functionality through a REST-based servlet.
+3. Provide suggestions for absolutely new items (having one or two properties and values if any, freshly entered by the user) - this is the real thing, and quite easy to implement too.
 
-4. Make this README more friendly. The reader should be able to set everything up and test after one read.
+4. Make the code cleaner and expose functionality through a REST-based servlet.
+
+5. Make this README more friendly. The reader should be able to set everything up and test after one read.
 
 ------------------------------------------------------------------------------------------------
 
