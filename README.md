@@ -56,6 +56,6 @@ I'm expecting pretty good results on properties, not sure about values - need to
 
 Byrial has written a few C programs that have turned out to be really helpful to me. Please check out [this link](http://www.wikidata.org/wiki/User:Byrial).
 
-I've used read_items.c to parse the pages-meta-current.xml dump from [here](http://dumps.wikimedia.org/wikidatawiki/20130417/) and store it into a database. Using a couple of SQL queries (see [build_csv.sql](sql/build_csv.sql)), I've generated a csv file with item-property pairs and item-<property-value> pairs for use with the recommendation engine. I've written a simple php file to accept a few parameters and call the engine. I tried to host this on a remote VPS that I currently have access to, but unfortunately, its Burst RAM goes upto 1GB and the recommendation engine alone is using a heap of 1600m + currently.
+I've used read_items.c to parse the pages-meta-current.xml dump from [here](http://dumps.wikimedia.org/wikidatawiki/20130417/) and store it into a database. I've written a couple of SQL queries (see [build_csv.sql](sql/build_csv.sql)), and generated a csv file with item-property pairs and item-<property:value> pairs for use with the recommendation engine. I tried to host this on a remote VPS that I currently have access to, but unfortunately, its Burst RAM goes upto 1GB and the recommendation engine alone is using a heap of 1600m + currently.
 
 Keep watching this repo. :)
