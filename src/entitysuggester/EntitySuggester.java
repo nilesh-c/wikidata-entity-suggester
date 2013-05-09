@@ -165,7 +165,7 @@ public class EntitySuggester {
         options.addOption(OptionBuilder.hasArg().withArgName("port").withDescription("Myrrix serving layer port").withLongOpt("port").create('p'));
         options.addOption(OptionBuilder.hasArg().withArgName("hostname/IP").withDescription("Myrrix serving layer host").withLongOpt("host").create('h'));
         options.addOption(OptionBuilder.hasArg().withArgName("CSV file name").withDescription("Ingest CSV file").withLongOpt("ingest").create('i'));
-        options.addOption(OptionBuilder.hasArgs(2).isRequired().withArgName("item ID").withArgName("property|value").withDescription("Recommend properties/values for item with given id. Type of recommendation can be either 'property' or 'value'").withLongOpt("recommend").create('r'));
+        options.addOption(OptionBuilder.hasArgs(2).isRequired().withArgName("item ID").withArgName("itemID> <property|value").withDescription("Recommend properties/values for item with given id. Type of recommendation can be either 'property' or 'value'").withLongOpt("recommend").create('r'));
         options.addOption(OptionBuilder.hasArg().isRequired().withArgName("property list file").withDescription("File with list of properties and property:value pairs").withLongOpt("property-list").create('l'));
         options.addOption(OptionBuilder.hasArg().withArgName("how many").withDescription("Number of recommendations to fetch").withLongOpt("count").create('c'));
         options.addOption(OptionBuilder.hasArg().isRequired().withArgName("MySQL Database Host").withLongOpt("dbhost").create());
