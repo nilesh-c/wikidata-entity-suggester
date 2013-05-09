@@ -22,7 +22,7 @@ usage: java -jar entity-suggester.jar
  -i,--ingest &lt;CSV file name>               Ingest CSV file
  -l,--property-list &lt;property list file>   File with list of properties and property:value pairs
  -p,--port &lt;port>                          Myrrix serving layer port
- -r,--recommend &lt;itemID> &lt;property|value>           Recommend properties/values for item with given id. Type of recommendation can be either 'property' or 'value'
+ -r,--recommend &lt;itemID> &lt;property|value>  Recommend properties/values for item with given id. Type of recommendation can be either 'property' or 'value'
 </pre>
 
 
@@ -67,6 +67,6 @@ lib/commons-cli-1.2.jar
 
 Byrial has written a few C programs that have turned out to be really helpful to me. Please check out [this link](http://www.wikidata.org/wiki/User:Byrial).
 
-I've used read_items.c to parse the pages-meta-current.xml dump from [here](http://dumps.wikimedia.org/wikidatawiki/20130417/) and store it into a database. Using a couple of SQL queries I've generated a csv file with item-property pairs and item-<property-value> pairs for use with the recommendation engine. I've written a simple php file to accept a few parameters and call the engine. I tried to host this on a remote VPS that I currently have access to, but unfortunately, it's Burst RAM goes upto 1GB and the recommendation engine alone is using a heap of 1600m + currently.
+I've used read_items.c to parse the pages-meta-current.xml dump from [here](http://dumps.wikimedia.org/wikidatawiki/20130417/) and store it into a database. Using a couple of SQL queries I've generated a csv file with item-property pairs and item-<property-value> pairs for use with the recommendation engine. I've written a simple php file to accept a few parameters and call the engine. I tried to host this on a remote VPS that I currently have access to, but unfortunately, its Burst RAM goes upto 1GB and the recommendation engine alone is using a heap of 1600m + currently.
 
 Keep watching this repo. :)
