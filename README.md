@@ -3,7 +3,7 @@ wikidata-entity-suggester
 
 This is a prototype for the Entity Suggester's first and second objectives - suggesting properties and values for a new item in wikidata. I'll be working on adding this entity suggester to Wikidata and improve the sorting order of the entity selector, for GSoC 2013.
 
-Please don't try running this with a Myrrix instance as yet. I will push SQL scripts to generate the csv file from the DB, in a day. Then I shall test this on my desktop. The myrrix [ParameterOptimizer](http://myrrix.com/tuning-quality/) is still running on my Intel i5-2500K, 4g RAM desktop for over 15 hours. After it finishes I shall build the model with an optimal value of lambda and no. of features; I'll be able to properly test this code on it and report my findings.
+Please don't try running this with a Myrrix instance as yet. I shall test this on my desktop first, after build the model with an optimal value of lambda and no. of features that I found from [ParameterOptimizer](http://myrrix.com/tuning-quality/); I'll be able to properly test this code on it and report my findings.
 
 It's an initial prototype completely in Java, using [Myrrix](http://myrrix.com)' Java API. The current code is pretty quick-n-dirty, a bunch of static java methods working together. I'll write a PHP wrapper over this, or most probably make a REST-based servlet API to call from PHP.
 
@@ -42,24 +42,13 @@ I'm expecting pretty good results on properties, not sure about values - need to
 
 ## TODO ##
 
-1. Push SQL scripts to this repo.
+1. Provide suggestions for absolutely new items (having one or two properties and values if any, freshly entered by the user) - this is the real thing, and quite easy to implement too.
 
-2. Add lib directory to this repo for convinience. It presently contains primarily the following:
-<pre>
-lib/myrrix-serving-0.11.jar
-lib/myrrix-client-0.11.jar
-lib/myrrix-online-0.11.jar
-lib/myrrix-common-0.11.jar
-lib/commons-cli-1.2.jar
-</pre>
+2. Make the code cleaner and expose functionality through a REST-based servlet.
 
-3. Provide suggestions for absolutely new items (having one or two properties and values if any, freshly entered by the user) - this is the real thing, and quite easy to implement too.
+3. Make this README more friendly. The reader should be able to set everything up and test after one read.
 
-4. Make the code cleaner and expose functionality through a REST-based servlet.
-
-5. Make this README more friendly. The reader should be able to set everything up and test after one read.
-
-6. I may re-write read_items.c (please see below) using an xml library and map-reduce to speed it up later. Might not be necessary at the moment, considering it takes 45 mins to parse the xml file and push into MySQL on my machine.
+4. I may re-write read_items.c (please see below) using an xml library and map-reduce to speed it up later. Might not be necessary at the moment, considering it takes 45 mins to parse the xml file and push into MySQL on my machine.
 
 ------------------------------------------------------------------------------------------------
 
@@ -67,6 +56,6 @@ lib/commons-cli-1.2.jar
 
 Byrial has written a few C programs that have turned out to be really helpful to me. Please check out [this link](http://www.wikidata.org/wiki/User:Byrial).
 
-I've used read_items.c to parse the pages-meta-current.xml dump from [here](http://dumps.wikimedia.org/wikidatawiki/20130417/) and store it into a database. Using a couple of SQL queries I've generated a csv file with item-property pairs and item-<property-value> pairs for use with the recommendation engine. I've written a simple php file to accept a few parameters and call the engine. I tried to host this on a remote VPS that I currently have access to, but unfortunately, its Burst RAM goes upto 1GB and the recommendation engine alone is using a heap of 1600m + currently.
+I've used read_items.c to parse the pages-meta-current.xml dump from [here](http://dumps.wikimedia.org/wikidatawiki/20130417/) and store it into a database. Using a couple of SQL queries (see [build_csv.sql](sql/build_csv.sql)), I've generated a csv file with item-property pairs and item-<property-value> pairs for use with the recommendation engine. I've written a simple php file to accept a few parameters and call the engine. I tried to host this on a remote VPS that I currently have access to, but unfortunately, its Burst RAM goes upto 1GB and the recommendation engine alone is using a heap of 1600m + currently.
 
 Keep watching this repo. :)
