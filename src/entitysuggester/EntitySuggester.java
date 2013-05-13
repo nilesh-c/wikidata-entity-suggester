@@ -1,6 +1,7 @@
 package entitysuggester;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.ListIterator;
 import net.myrrix.client.MyrrixClientConfiguration;
@@ -11,6 +12,21 @@ import org.apache.commons.cli.*;
  * @author Nilesh Chakraborty
  */
 public class EntitySuggester {
+
+    public static class OptionComarator<T extends Option> implements Comparator<T> {
+
+        private static final String OPTS_ORDER = "hpiracldbhostdbnamedbuserdbpass"; // option name order
+
+        @Override
+        public int compare(T o1, T o2) {
+            String opt1, opt2;
+            if((opt1 = o1.getOpt()) == null)
+                opt1 = o1.getLongOpt();
+            if((opt2 = o2.getOpt()) == null)
+                opt2 = o2.getLongOpt();
+            return OPTS_ORDER.indexOf(opt1 == null ? "" : opt1) - OPTS_ORDER.indexOf(opt2 == null ? "" : opt2);
+        }
+    }
 
     public static class CustomParser extends GnuParser {
 
@@ -57,6 +73,7 @@ public class EntitySuggester {
             options.addOptionGroup(optionGroup2);
             options.addOptionGroup(optionGroup3);
             HelpFormatter helpFormatter = new HelpFormatter();
+            helpFormatter.setOptionComparator(new OptionComarator());
             helpFormatter.setDescPadding(2);
             helpFormatter.printHelp(120, "java -jar entity-suggester.jar", "\ndetailed usage:\n\n", options, "Thanks for using the entity-suggester prototype. Remember to start the Myrrix instance before running this.", true);
         } else {
@@ -123,7 +140,7 @@ public class EntitySuggester {
                 System.out.print("Options missing : ");
                 for (Iterator it = ex.getMissingOptions().iterator(); it.hasNext();) {
                     Object o = it.next();
-                    if(o instanceof OptionGroup) {
+                    if (o instanceof OptionGroup) {
                         OptionGroup og = (OptionGroup) o;
                         for (Iterator itr = og.getOptions().iterator(); itr.hasNext();) {
                             Option option = (Option) itr.next();
