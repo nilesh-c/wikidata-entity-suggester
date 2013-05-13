@@ -76,7 +76,7 @@ Please check [this wiki page](https://github.com/nilesh-c/wikidata-entity-sugges
 
 1. Expose functionality through a REST-based servlet.
 
-2. I may re-write read_items.c (please see below) using an xml library and map-reduce to speed it up later. Might not be necessary at the moment, considering it takes 45 mins to parse the xml file and push into MySQL on my machine.
+2. I may rewrite read_items.c (please see below) using an xml library and map-reduce to speed it up later. Might not be necessary at the moment, considering it takes 45 mins to parse the xml file and push into MySQL on my machine.
 
 
 ## How to build the required CSV files from wikidata data dumps ##
@@ -94,6 +94,7 @@ ant
 wget http://toolserver.org/~byrial/wikidata-programs/read_items.c
 wget http://toolserver.org/~byrial/wikidata-programs/wikidatalib.c
 wget http://toolserver.org/~byrial/wikidata-programs/wikidatalib.h
+wget http://dumps.wikimedia.org/wikidatawiki/20130417/wikidatawiki-20130417-pages-meta-current.xml.bz2
 </pre>
 You might need to modify the source of wikidatalib.h to change #include &lt;mysql.h> to #include &lt;mysql/mysql.h><br/>
 Change DATABASE_HOST, DATABASE_USER and DATABASE_PASSWD to your respective values.<br/>
