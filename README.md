@@ -1,6 +1,6 @@
 Wikidata Entity Suggester
 =========================
-
+m
 This is a prototype for the Entity Suggester's first and second objectives - suggesting properties and values for a new item in wikidata. I'll be working on adding this entity suggester to Wikidata and improve the sorting order of the entity selector, for GSoC 2013.
 
 As of now, Myrrix is used to build a basic model. Optimal value of lambda and no. of features that I found from [ParameterOptimizer](http://myrrix.com/tuning-quality/) are not being used currently. I need to do more experimentation for that.
@@ -94,6 +94,7 @@ ant
 wget http://toolserver.org/~byrial/wikidata-programs/read_items.c
 wget http://toolserver.org/~byrial/wikidata-programs/wikidatalib.c
 wget http://toolserver.org/~byrial/wikidata-programs/wikidatalib.h
+wget http://myrrix-recommender.googlecode.com/files/myrrix-serving-0.11.jar
 wget http://dumps.wikimedia.org/wikidatawiki/20130417/wikidatawiki-20130417-pages-meta-current.xml.bz2
 </pre>
 You might need to modify the source of wikidatalib.h to change #include &lt;mysql.h> to #include &lt;mysql/mysql.h><br/>
