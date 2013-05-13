@@ -1,6 +1,6 @@
 Wikidata Entity Suggester
 =========================
-m
+
 This is a prototype for the Entity Suggester's first and second objectives - suggesting properties and values for a new item in wikidata. I'll be working on adding this entity suggester to Wikidata and improve the sorting order of the entity selector, for GSoC 2013.
 
 As of now, Myrrix is used to build a basic model. Optimal value of lambda and no. of features that I found from [ParameterOptimizer](http://myrrix.com/tuning-quality/) are not being used currently. I need to do more experimentation for that.
@@ -42,7 +42,7 @@ Thanks for using the entity-suggester prototype. Remember to start the Myrrix in
 </pre>
 
 
-1. The --ingest option is used to genearte the model in Myrrix by reading a csv file that contains item-property pairs and item-(property----value) pairs.<br/><br/>
+1. The --ingest option is used to generate the model in Myrrix by reading a csv file that contains item-property pairs and item-(property----value) pairs.<br/><br/>
 * An __item-property pair__ looks like this :
 <pre>60,373,7</pre>
 Here, 60 is Item ID, for [New York City](http://www.wikidata.org/wiki/Q60) in this case. 373 is the Property ID for [Commons Category](http://www.wikidata.org/wiki/Property:P373). 7 is a relative score for this data point.<br/><br/>
