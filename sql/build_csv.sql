@@ -8,7 +8,9 @@ FROM statement;
 -- Create a csv file with each line containing the pair: <item ID>, <propertyID:value>
 -- Different relative scores for different properties - depending upon how popular the property is on wikidata.
 SELECT DISTINCT s_item,
-                (CONCAT(cast(s_property AS char), ':', cast((CASE WHEN s_item_value IS NULL THEN s_string_value ELSE s_item_value END) AS char))) AS property_value,
+                (CONCAT(cast(s_property AS char), '----', 
+REPLACE(cast((CASE WHEN s_item_value IS NULL THEN s_string_value ELSE s_item_value END) AS char), ',', ' '))) 
+AS property_value,
                 (CASE
                      WHEN s_property=107 THEN 50
                      WHEN s_property IN (373,
