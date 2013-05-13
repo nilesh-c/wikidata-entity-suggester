@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package entitysuggester.rescorer;
 
 import java.io.IOException;
@@ -9,23 +5,21 @@ import java.util.concurrent.Callable;
 import net.myrrix.common.MyrrixRecommender;
 import net.myrrix.common.ReloadingReference;
 import net.myrrix.online.AbstractRescorerProvider;
-import net.myrrix.online.RescorerProvider;
 import org.apache.mahout.cf.taste.recommender.IDRescorer;
 
 /**
- *
- * @author nilesh
+ * @author Nilesh Chakraborty
  */
 public class EntityRescorerProvider extends AbstractRescorerProvider {
 
     private ReloadingReference<ItemListRetriever> itemList;
 
     public EntityRescorerProvider() {
-        this.itemList = new ReloadingReference<>(new Callable<ItemListRetriever>() {
+        this.itemList = new ReloadingReference<ItemListRetriever>(new Callable<ItemListRetriever>() {
 
             @Override
             public ItemListRetriever call() throws IOException {
-                return new ItemListRetriever("item-list");
+                return new ItemListRetriever(System.getProperty("proplist"));
             }
         });
     }
@@ -40,8 +34,8 @@ public class EntityRescorerProvider extends AbstractRescorerProvider {
         } else {
             type = args[0];
         }
-
-        if (type == "property") {
+        
+        if (type.equals("property")) {
             idRescorer = new IDRescorer() {
 
                 @Override
@@ -52,13 +46,18 @@ public class EntityRescorerProvider extends AbstractRescorerProvider {
                 @Override
                 public boolean isFiltered(long l) {
                     String stringID = itemList.get().getStringIDFor(l);
-                    if(stringID.contains(":")) // if it's a <property:value> then exclude/filter it
-                        return true;
-                    else
+                    if(stringID == null)
                         return false;
+                    
+                    if(stringID.contains("----")) // if it's a <property----value> then exclude/filter it
+                    {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
             };
-        } else if (type == "value") {
+        } else if (type.equals("value")) {
             idRescorer = new IDRescorer() {
 
                 @Override
@@ -69,10 +68,15 @@ public class EntityRescorerProvider extends AbstractRescorerProvider {
                 @Override
                 public boolean isFiltered(long l) {
                     String stringID = itemList.get().getStringIDFor(l);
-                    if(stringID.contains(":")) // if it's a <property:value> then include it
+                    if(stringID == null)
                         return false;
-                    else
+                    
+                    if (stringID.contains("----")) // if it's a <property----value> then include it
+                    {
+                        return false;
+                    } else {
                         return true;
+                    }
                 }
             };
         } else {
@@ -81,4 +85,11 @@ public class EntityRescorerProvider extends AbstractRescorerProvider {
 
         return idRescorer;
     }
+
+    @Override
+    public IDRescorer getRecommendToAnonymousRescorer(long[] itemIDs, MyrrixRecommender recommender, String... args) {
+        return getRecommendRescorer(new long[]{}, recommender, args);
+    }
+    
+    
 }
