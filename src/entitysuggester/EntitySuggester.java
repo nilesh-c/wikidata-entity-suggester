@@ -44,11 +44,8 @@ public class EntitySuggester {
             }
         }
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+    
+    private static void parseCommandLine(String... args) {
         OptionGroup optionGroup1 = new OptionGroup();
         optionGroup1.addOption(OptionBuilder.hasArg().isRequired().withArgName("port").withDescription("Myrrix serving layer port").withLongOpt("port").create('p'));
         optionGroup1.addOption(OptionBuilder.hasArg().isRequired().withArgName("hostname/IP").withDescription("Myrrix serving layer host").withLongOpt("host").create('h'));
@@ -159,4 +156,12 @@ public class EntitySuggester {
             }
         }
     }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        parseCommandLine(args);
+    }
+    
 }
