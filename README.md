@@ -5,15 +5,22 @@ This is a prototype for the Entity Suggester's first and second objectives - sug
 
 As of now, Myrrix is used to build a basic model. Optimal value of lambda and no. of features that I found from [ParameterOptimizer](http://myrrix.com/tuning-quality/) are not being used currently. I need to do more experimentation for that.
 
-It's an initial prototype completely in Java, using [Myrrix](http://myrrix.com)' Java API. I'll write a PHP wrapper over this, or most probably make a REST-based servlet API to be called from PHP.
+It's an initial prototype written in Java and PHP, using [Myrrix](http://myrrix.com)' Java API and [Guzzle](http://guzzlephp.org). The Java backend is a Myrrix instance, plus a couple of custom wrapper servlets that are used to push data into the Myrrix instance and get recommendations from it. The PHP client is built on top of Guzzle and exposes a neat PHP API that can be used to query the backend.
 
-## What it does ##
+Setting it up is easy - basically, fire up tomcat with the backend war file, run a few commands. Use the PHP API to reap it. I have included a command line standalone jar too. After building from source, you can find it here:
+<pre>
+client/target/entity-suggester-client.jar
+</pre>
+
+## How it works - web-based version ##
+
+## How it works - command-line version ##
 
 ### Command-line usage ###
-Check out the usage info it dumps when it's run without any arguments like so:
+Check out the usage info it dumps when client/target/entity-suggester-client.jar is run without any arguments like so:
 
 <pre>
-usage: java -jar entity-suggester.jar [-h &lt;hostname/IP> | -p &lt;port> | -i &lt;CSV file name>]   -r &lt;item ID>
+usage: java -jar entity-suggester-client.jar [-h &lt;hostname/IP> | -p &lt;port> | -i &lt;CSV file name>]   -r &lt;item ID>
        &lt;property|value> | -a &lt;property|value> &lt;p1> [&lt;p2> ...] [&lt;p1----v1> &lt;p2----v2> ...]>  [-c &lt;how many> | -l
        &lt;property list file> | --dbhost &lt;MySQL Database Host> | --dbname &lt;MySQL Database Name> | --dbuser &lt;MySQL Database
        user> | --dbpass &lt;MySQL Database Password>]
@@ -69,14 +76,6 @@ Please check [this wiki page](https://github.com/nilesh-c/wikidata-entity-sugges
 2. entitysuggester.rescorer.ItemListRetriever is a class that is used by the above class to build a map with properties or property:value strings as VALUE, and hashed representations of them as KEY. This is essential as Myrrix works with only LONG IDs. A map like this is loaded in memory to convert between the original string representations and the corresponding hashed LONG IDs.
 
 3. entitysuggester.EntitySuggester is the main class that does the client work.
-
-
-
-## TODO ##
-
-1. Expose functionality through a REST-based servlet.
-
-2. I may rewrite read_items.c (please see below) using an xml library and map-reduce to speed it up later. Might not be necessary at the moment, considering it takes 45 mins to parse the xml file and push into MySQL on my machine.
 
 
 ## How to build the required CSV files from wikidata data dumps ##
