@@ -75,7 +75,8 @@ public class CLIEntitySuggester {
             HelpFormatter helpFormatter = new HelpFormatter();
             helpFormatter.setOptionComparator(new OptionComarator());
             helpFormatter.setDescPadding(2);
-            helpFormatter.printHelp(120, "java -jar entity-suggester.jar", "\ndetailed usage:\n\n", options, "Thanks for using the entity-suggester prototype. Remember to start the Myrrix instance before running this.", true);
+            String jarName = new java.io.File(CLIEntitySuggester.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getName();
+            helpFormatter.printHelp(120, "java -jar " + jarName, "\ndetailed usage:\n\n", options, "Thanks for using the entity-suggester prototype. Remember to start the Myrrix instance before running this.", true);
         } else {
             CommandLine cmd;
             try {
