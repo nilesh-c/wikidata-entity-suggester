@@ -5,22 +5,13 @@
 package entitysuggester.client.servlets;
 
 import com.google.common.base.Charsets;
-import com.google.common.collect.Iterables;
-import com.google.common.net.HttpHeaders;
 import java.io.*;
 import java.nio.charset.Charset;
-import java.util.Collection;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.zip.GZIPInputStream;
-import java.util.zip.ZipInputStream;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import net.myrrix.client.translating.TranslatedRecommendedItem;
 import org.apache.mahout.cf.taste.common.TasteException;
 
 /**

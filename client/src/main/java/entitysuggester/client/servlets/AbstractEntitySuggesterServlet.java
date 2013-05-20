@@ -33,7 +33,7 @@ public abstract class AbstractEntitySuggesterServlet extends AbstractMyrrixServl
         config.setPort(request.getServerPort());
         recommender = new WebClientRecommender(config);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         MyrrixClientConfiguration config = new MyrrixClientConfiguration();

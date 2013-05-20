@@ -2,7 +2,6 @@ package entitysuggester.client.recommender;
 
 import entitysuggester.client.CLIEntitySuggester;
 import java.io.File;
-import java.io.IOException;
 import java.sql.*;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,10 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.myrrix.client.ClientRecommender;
 import net.myrrix.client.MyrrixClientConfiguration;
 import net.myrrix.client.translating.TranslatedRecommendedItem;
-import net.myrrix.client.translating.TranslatingClientRecommender;
 import org.apache.mahout.cf.taste.common.TasteException;
 
 /**
@@ -74,7 +71,6 @@ public class CLIClientRecommender extends AbstractClientRecommender {
             Logger.getLogger(CLIEntitySuggester.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 
     private void writeResults(List<TranslatedRecommendedItem> recommendations, String recommendType, String dbHost, String dbName, String dbUser, String dbPassword) {
         if (!recommendations.isEmpty()) {
@@ -122,18 +118,19 @@ public class CLIClientRecommender extends AbstractClientRecommender {
                     PreparedStatement ps = connect.prepareStatement("SELECT l_id, l_text FROM label WHERE l_lang='en' AND l_id=?");
                     for (TranslatedRecommendedItem recommendation : recommendations) {
                         String[] pair = recommendation.getItemID().split("----");
-                        if(pair.length < 2)
+                        if (pair.length < 2) {
                             continue;
+                        }
                         try {
                             long value = Long.parseLong(pair[1]);
                             ps.setLong(1, value);
                             resultSet1 = ps.executeQuery();
-                            while(resultSet1.next()) {
+                            while (resultSet1.next()) {
                                 long valID = resultSet1.getLong("l_id");
                                 String valText = resultSet1.getString("l_text");
                                 System.out.println(pair[0] + " => " + map.get(Long.parseLong(pair[0])) + " ---- " + valID + " => " + valText);
                             }
-                        } catch(NumberFormatException ex) {
+                        } catch (NumberFormatException ex) {
                             System.out.println(pair[0] + " => " + map.get(Long.parseLong(pair[0])) + " ---- " + pair[1]);
                         }
                     }
@@ -142,10 +139,12 @@ public class CLIClientRecommender extends AbstractClientRecommender {
                 e.printStackTrace();
             } finally {
                 try {
-                    if(connect != null)
+                    if (connect != null) {
                         connect.close();
-                    if(statement != null)
+                    }
+                    if (statement != null) {
                         statement.close();
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(CLIEntitySuggester.class.getName()).log(Level.SEVERE, null, ex);
                 }

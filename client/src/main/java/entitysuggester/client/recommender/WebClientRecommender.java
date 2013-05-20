@@ -1,20 +1,12 @@
 package entitysuggester.client.recommender;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.Reader;
 import java.net.URI;
-import java.sql.*;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import net.myrrix.client.ClientRecommender;
 import net.myrrix.client.MyrrixClientConfiguration;
 import net.myrrix.client.translating.TranslatedRecommendedItem;
-import net.myrrix.client.translating.TranslatingClientRecommender;
 import org.apache.mahout.cf.taste.common.TasteException;
 
 /**
@@ -47,7 +39,7 @@ public class WebClientRecommender extends AbstractClientRecommender {
         clientRecommender.addItemIDs(new File(idListFile));
         float[] values = new float[list.length];
         Arrays.fill(values, 30);
-        List<TranslatedRecommendedItem> recommendations = clientRecommender.recommendToAnonymous(list, howMany);
+        List<TranslatedRecommendedItem> recommendations = clientRecommender.recommendToAnonymous(list, values, howMany, new String[]{recommendType}, "testID");
         return recommendations;
     }
 

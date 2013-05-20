@@ -21,10 +21,12 @@ public class CLIEntitySuggester {
         @Override
         public int compare(T o1, T o2) {
             String opt1, opt2;
-            if((opt1 = o1.getOpt()) == null)
+            if ((opt1 = o1.getOpt()) == null) {
                 opt1 = o1.getLongOpt();
-            if((opt2 = o2.getOpt()) == null)
+            }
+            if ((opt2 = o2.getOpt()) == null) {
                 opt2 = o2.getLongOpt();
+            }
             return OPTS_ORDER.indexOf(opt1 == null ? "" : opt1) - OPTS_ORDER.indexOf(opt2 == null ? "" : opt2);
         }
     }
@@ -45,7 +47,7 @@ public class CLIEntitySuggester {
             }
         }
     }
-    
+
     private static void parseCommandLine(String... args) {
         OptionGroup optionGroup1 = new OptionGroup();
         optionGroup1.addOption(OptionBuilder.hasArg().isRequired().withArgName("port").withDescription("Myrrix serving layer port").withLongOpt("port").create('p'));
@@ -64,7 +66,7 @@ public class CLIEntitySuggester {
         optionGroup3.addOption(OptionBuilder.hasArgs(2).withArgName("item ID> <property|value").withDescription("Recommend properties or property----value pairs for item with given id. Type of recommendation can be either 'property' or 'value'").withLongOpt("recommend").create('r'));
         optionGroup3.addOption(OptionBuilder.hasArgs().withArgName("property|value> <p1> [<p2> ...] [<p1----v1> <p2----v2> ...]").withDescription("Recommend properties/values for an 'anonymous' item. A list of properties and/or property:value pairs is given as input.").withLongOpt("recommend-anon").create('a'));
         optionGroup3.setRequired(true);
-        
+
         if (args.length == 0) {
             Options options = new Options();
             options.addOptionGroup(optionGroup1);
@@ -164,5 +166,4 @@ public class CLIEntitySuggester {
     public static void main(String[] args) {
         parseCommandLine(args);
     }
-    
 }
