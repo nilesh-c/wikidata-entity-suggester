@@ -5,21 +5,15 @@
 package entitysuggester.client.servlets;
 
 import com.google.common.collect.Iterables;
-import entitysuggester.client.recommender.WebClientRecommender;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import net.myrrix.client.MyrrixClientConfiguration;
 import net.myrrix.client.translating.TranslatedRecommendedItem;
 import org.apache.mahout.cf.taste.common.TasteException;
 
@@ -67,9 +61,9 @@ public class EntitySuggesterServlet extends AbstractEntitySuggesterServlet {
             } else {
                 writer.write(',');
             }
-            writer.write('[');
+            writer.write("[\"");
             writer.write(item.getItemID());
-            writer.write(',');
+            writer.write("\",");
             writer.write(Float.toString(item.getValue()));
             writer.write(']');
         }
