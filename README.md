@@ -22,7 +22,7 @@ Please read these pages in sequence to learn how to set everything up and how it
 * [CSV file explanation](https://github.com/nilesh-c/wikidata-entity-suggester/wiki/CSV-file-explanation)
 * [Using the PHP client](https://github.com/nilesh-c/wikidata-entity-suggester/wiki/Using-the-PHP-client) (also contains examples)
 * [Using the command line client](https://github.com/nilesh-c/wikidata-entity-suggester/wiki/Using-the-command-line-client) (also contains examples)
-* [Which class does what]()
+* [Which class does what](https://github.com/nilesh-c/wikidata-entity-suggester/wiki/Which-class-does-what)
 
 
 ## Acknowledgements
